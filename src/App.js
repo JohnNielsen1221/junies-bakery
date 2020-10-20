@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import About from './components/About';
-import Nav from './components/Nav';
+import Navigation from './components/Navigation';
 import Portfolio from './components/Portfolio';
 import ContactForm from './components/Contact';
 import Resume from './components/Resume';
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <Nav
+      <Navigation
         navSelected={navSelected}
         setNavSelected={setNavSelected}
       />
