@@ -8,9 +8,7 @@ function Navigation(props) {
     return (
         <div>
             <Figure>
-                <Figure.Image
-                    width={100}
-                    height={100}
+                <Figure.Image className='w-100'
                     alt="171x180"
                     src="holder.js/171x180"
                 />
