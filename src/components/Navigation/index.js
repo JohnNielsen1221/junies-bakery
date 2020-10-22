@@ -24,10 +24,10 @@ function Navigation(props) {
                             <a href="#about" onClick={() => setNavSelected("about")}>About Me</a>
                         </li>
                         <li className="mx-2">
-                            <a href="#portfolio" onClick={() => setNavSelected("portfolio")}>Portfolio</a>
+                            <a href="#menu" onClick={() => setNavSelected("menu")}>Weekly Menu</a>
                         </li>
                         <li className={`mx-2`}>
-                            <a href="#resume" onClick={() => setNavSelected("resume")}>Resume</a>
+                            <a href="#custom" onClick={() => setNavSelected("custom")}>Custom Orders</a>
                         </li>
                         <li className={`mx-2`}>
                             <a href="#contact" onClick={() => setNavSelected("contact")}>Contact</a>

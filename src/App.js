@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import About from './components/About';
 import Navigation from './components/Navigation';
-import Portfolio from './components/Portfolio';
+import Portfolio from './components/Menu';
 import ContactForm from './components/Contact';
-import Resume from './components/Resume';
+import Resume from './components/Custom';
 import Footer from './components/Footer';
 
 function App() {
