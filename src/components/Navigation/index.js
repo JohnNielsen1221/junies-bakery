@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Figure } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 function Navigation(props) {
@@ -16,25 +17,27 @@ function Navigation(props) {
                     Nulla vitae elit libero, a pharetra augue mollis interdum.
                 </Figure.Caption>
             </Figure>
-            <Navbar className="flex-row px-2 ">
-                <Navbar.Brand>Junie's Bakery</Navbar.Brand>
-                <Nav>
-                    <ul className="flex-row">
-                        <li className="mx-2">
-                            <a href="#about" onClick={() => setNavSelected("about")}>About Me</a>
-                        </li>
-                        <li className="mx-2">
-                            <a href="#menu" onClick={() => setNavSelected("menu")}>Weekly Menu</a>
-                        </li>
-                        <li className={`mx-2`}>
-                            <a href="#custom" onClick={() => setNavSelected("custom")}>Custom Orders</a>
-                        </li>
-                        <li className={`mx-2`}>
-                            <a href="#contact" onClick={() => setNavSelected("contact")}>Contact</a>
-                        </li>
-
-                    </ul>
-                </Nav>
+            <Navbar collapseOnSelect expand="lg" className="navbar-css">
+                <Navbar.Brand className="title" as={Link} to="/">
+                    Junie's Bakery
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                    <Nav className="justify-content-end">
+                            <>
+                                <Nav.Link eventKey="1" className="nav" as={Link} to="/menu">
+                                    Weekly Menu
+                                </Nav.Link>
+                                <Nav.Link eventKey="2" className="nav" as={Link} to="/custom">
+                                    Custom Order
+                                </Nav.Link>
+                                <Nav.Link eventKey="3" className="nav" as={Link} to="/contact">
+                                    Contact
+                                </Nav.Link>
+                                </>
+                            )}
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         </div>
     );
