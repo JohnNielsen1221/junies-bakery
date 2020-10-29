@@ -1,24 +1,94 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { validateEmail } from '../../utils/helpers';
+import emailjs from 'emailjs-com';
 
-function Resume() {
+
+function CustomForm() {
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    const { name, email, message } = formState;
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+    function handleChange(e) {
+        if (e.target.name === 'email') {
+            const isValid = validateEmail(e.target.value);
+            console.log(isValid);
+            if (!isValid) {
+                setErrorMessage('Your email is invalid.');
+            } else {
+                setErrorMessage('');
+            }
+        } else {
+            if (!e.target.value.length) {
+                setErrorMessage(`${e.target.name} is required.`);
+            } else {
+                setErrorMessage('');
+            }
+        }
+
+        if (!errorMessage) {
+            setFormState({ ...formState, [e.target.name]: e.target.value });
+        }
+    }
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        if (Object.values(formState).filter(v=>v).length < 1) {
+            setErrorMessage("You must enter a valid response for all fields")
+            return;
+        } else {
+            setSuccessMessage('Thank you for your email! I will be in touch shortly.')
+        }
+
+
+        console.log(formState)
+
+        emailjs.sendForm(process.env.REACT_APP_EMAIL_SERVICE_ID, process.env.REACT_APP_EMAIL_TEMPLATE_ID, e.target, process.env.REACT_APP_EMAIL_USER_ID)
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
+        setFormState({
+            name: '', 
+            email: '', 
+            message: ''
+        })
+    }
+
+    //JSX
     return (
         <section>
-            <h1 className="resume-title">Taking care of business and working overtime. Workout...</h1>
-            <div className="resume-page">
-                <h4>Download my <a className='resume-link' href="https://github.com/JohnNielsen1221/react-portfolio/blob/master/src/assets/JohnHayesNielsenResume.pdf">resume</a></h4>
-                <br></br>
-                <div className='proficiencies'>
-                    <h3>Front-End Proficiencies</h3>
-                    <p>HTML<br></br>CSS (Bootstrap, Materialize, custom)<br></br> JavaScript<br></br> jQuery<br></br> React<br></br> IndexedDB</p>
-                </div>
-                <br></br>
+            <h2> Let me know what you would like to order and I will reach out as soon as possible to discuss options.</h2>
+            <form id='contact-form' onSubmit={sendEmail}>
                 <div>
-                    <h3>Back-End Proficiencies</h3>
-                    <p>Node<br></br> Express<br></br> SQL (sqlite, mySQL)<br></br> Sequelize<br></br> NoSQL (MongoDB, Mongoose)<br></br> API's</p>
+                    <label className='form-name' htmlFor='name'>Name:</label>
+                    <input type="text" defaultValue={name} onBlur={handleChange} name="name" />
                 </div>
-            </div>
+                <div>
+                    <label className='form-email' htmlFor='email'>Email address:</label>
+                    <input type="email" defaultValue={email} onBlur={handleChange} name="email" />
+                </div>
+                <div className='form-message'>
+                    <label htmlFor='message'>Message:</label>
+                    <textarea name="message" defaultValue={message} onBlur={handleChange} rows="5" />
+                </div>
+                {errorMessage && (
+                    <div>
+                        <p className='error-text'>{errorMessage}</p>
+                    </div>
+                )}
+                {successMessage && (
+                    <div>
+                        <p className='error-text'>{successMessage}</p>
+                    </div>
+                )}
+                <button data-testid="buttontag" type='submit'>Submit</button>
+            </form>
         </section>
-    )
+    );
 }
 
-export default Resume
+export default CustomForm;
