@@ -4,8 +4,8 @@ import emailjs from 'emailjs-com';
 
 
 function CustomForm() {
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-    const { name, email, message } = formState;
+    const [formState, setFormState] = useState({ name: '', email: '', message: '', items: '', date:'' });
+    const { name, email, message, items, date } = formState;
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -54,7 +54,9 @@ function CustomForm() {
         setFormState({
             name: '', 
             email: '', 
-            message: ''
+            message: '',
+            items:'',
+            date:''
         })
     }
 
@@ -71,10 +73,19 @@ function CustomForm() {
                     <label className='form-email' htmlFor='email'>Email address:</label>
                     <input type="email" defaultValue={email} onBlur={handleChange} name="email" />
                 </div>
+                <div>
+                    <label className='form-items' htmlFor='items'>Item(s) you would like to order:</label>
+                    <input type="text" defaultValue={items} onBlur={handleChange} name="items" />
+                </div>
                 <div className='form-message'>
-                    <label htmlFor='message'>Message:</label>
+                    <label htmlFor='message'>Tell me what you would like for each item:</label>
                     <textarea name="message" defaultValue={message} onBlur={handleChange} rows="5" />
                 </div>
+                <div>
+                    <label className='form-due' htmlFor='date'>When were you hoping to have these items:</label>
+                    <input type="date" defaultValue={date} onBlur={handleChange} name="date" />
+                </div>
+
                 {errorMessage && (
                     <div>
                         <p className='error-text'>{errorMessage}</p>
