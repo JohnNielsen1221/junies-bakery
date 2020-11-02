@@ -19,7 +19,7 @@ function Navigation(props) {
             </Figure>
             <Navbar collapseOnSelect expand="lg" className="navbar-css">
                 <Navbar.Brand className="title" as={Link} to="/">
-                    Junie's Bakery
+                    About Junie's Bakery
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
@@ -35,7 +35,6 @@ function Navigation(props) {
                                     Contact
                                 </Nav.Link>
                                 </>
-                            )}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
