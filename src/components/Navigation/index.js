@@ -10,7 +10,7 @@ function Navigation(props) {
         <div>
             <Figure>
                 <Figure.Image className='w-100'
-                    alt="171x180"
+                    alt="Junie's Bakery Logo"
                     src="holder.js/171x180"
                 />
                 <Figure.Caption>
